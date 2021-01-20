@@ -9,6 +9,20 @@ const errorElement = document.getElementById("error");
 form.addEventListener("submit", (e) => {
   let messages = [];
 
+  // Email Verification
+
+  let validateEmail = () => {
+    if (
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+        email.value
+      )
+    ) {
+      return true;
+    }
+    alert("You have entered an invalid email address!");
+    return false;
+  };
+
   if (email.value === "" || email.value == null) {
     messages.push("Email is required");
   }
@@ -38,23 +52,7 @@ form.addEventListener("submit", (e) => {
 
   // Form filled out correctly
 
-  if (messages.length == 0) {
+  if (messages.length == 0 && validateEmail(email) == true) {
     alert(`Good Job`);
   }
-
-  // Email Verification
-
-  let validateEmail = () => {
-    if (
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
-        email.value
-      )
-    ) {
-      return true;
-    }
-    alert("You have entered an invalid email address!");
-    return false;
-  };
-
-  validateEmail(email);
 });
